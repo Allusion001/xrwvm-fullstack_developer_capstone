@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./Dealers.css";
 import "../assets/style.css";
 import Header from '../Header/Header';
-import review_icon from "../assets/reviewicon.png"
+
 
 const Dealers = () => {
   const [dealersList, setDealersList] = useState([]);
@@ -12,7 +12,7 @@ const Dealers = () => {
   // let root_url = window.location.origin
   let dealer_url ="/djangoapp/get_dealers";
   
-  let dealer_url_by_state = "/djangoapp/get_dealers/";
+  let dealer_url_by_state = "/djangoapp/get_dealers";
  
   const filterDealers = async (state) => {
     dealer_url_by_state = dealer_url_by_state+state;
@@ -30,8 +30,10 @@ const Dealers = () => {
     const res = await fetch(dealer_url, {
       method: "GET"
     });
-    const retobj = await res.json();
+    const retobj = res.json();
     if(retobj.status === 200) {
+       console.log("AFafafa") 
+ 
       let all_dealers = Array.from(retobj.dealers)
       let states = [];
       all_dealers.forEach((dealer)=>{
